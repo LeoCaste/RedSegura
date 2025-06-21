@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import com.redsegura.R;
 import com.redsegura.adapters.EmergencyContactAdapter;
-import com.redsegura.models.Contact;
+import com.redsegura.models.ContactModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class EmergencyContactsFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private EmergencyContactAdapter adapter;
-    private List<Contact> contactList;
+    private List<ContactModel> contactList;
 
     public EmergencyContactsFragment() {
         // Required empty public constructor

@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.redsegura.R;
 import com.redsegura.adapters.ContactAdapter;
-import com.redsegura.models.Contact;
+import com.redsegura.models.ContactModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class ContactsFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ContactAdapter adapter;
-    private List<Contact> contactList;
+    private List<ContactModel> contactList;
 
     public ContactsFragment() {
         // Required empty public constructor
