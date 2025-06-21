@@ -24,6 +24,10 @@
             android:name=".ui.AlertMapActivity"
             android:label="Mapa de Alertas" />
 
+        <activity android:name=".activities.MapActivity" />
+        <activity android:name=".activities.AIChatActivity" />
+
+
         <activity
             android:name=".ui.HomeActivity"
             android:label="Inicio" />
