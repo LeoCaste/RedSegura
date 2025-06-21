@@ -4,17 +4,26 @@ public class MessageModel {
     private String sender;
     private String receiver;
     private String content;
-    private String timestamp;
+    private long timestamp;
     private boolean fromAI;
 
     public MessageModel() {}
 
-    public MessageModel(String sender, String receiver, String content, String timestamp, boolean fromAI) {
+    public MessageModel(String sender, String receiver, String content, long timestamp, boolean fromAI) {
         this.sender = sender;
         this.receiver = receiver;
         this.content = content;
         this.timestamp = timestamp;
         this.fromAI = fromAI;
+    }
+
+    // Constructor simplificado para uso en ChatActivity
+    public MessageModel(String sender, String content, long timestamp) {
+        this.sender = sender;
+        this.receiver = "";  // Por defecto
+        this.content = content;
+        this.timestamp = timestamp;
+        this.fromAI = false; // Por defecto
     }
 
     public String getSender() { return sender; }
@@ -29,9 +38,9 @@ public class MessageModel {
 
     public void setContent(String content) { this.content = content; }
 
-    public String getTimestamp() { return timestamp; }
+    public long getTimestamp() { return timestamp; }
 
-    public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
+    public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
 
     public boolean isFromAI() { return fromAI; }
 
