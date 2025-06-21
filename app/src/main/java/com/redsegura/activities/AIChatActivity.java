@@ -3,7 +3,8 @@ package com.redsegura.activities;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.redsegura.redseguraapp.R;
+import com.redsegura.R;
+
 
 import org.json.JSONObject;
 import java.io.BufferedReader;

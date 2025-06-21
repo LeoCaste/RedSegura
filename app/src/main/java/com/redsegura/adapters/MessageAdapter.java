@@ -5,15 +5,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.redsegura.models.Message;
-import com.redsegura.redseguraapp.R;
+import com.redsegura.models.MessageModel;
+import com.redsegura.R;
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
 
-    private List<Message> messageList;
+    private List<MessageModel> messageList;
 
-    public MessageAdapter(List<Message> messages) {
+    public MessageAdapter(List<MessageModel> messages) {
         this.messageList = messages;
     }
 
@@ -35,7 +35,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Message m = messageList.get(position);
+        MessageModel m = messageList.get(position);
         holder.sender.setText(m.getSender());
         holder.content.setText(m.getContent());
     }

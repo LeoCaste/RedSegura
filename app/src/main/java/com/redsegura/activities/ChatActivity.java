@@ -7,7 +7,7 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.redsegura.R;
 import com.redsegura.adapters.ChatAdapter;
-import com.redsegura.models.Message;
+import com.redsegura.models.MessageModel;
 import com.redsegura.services.ChatService;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class ChatActivity extends AppCompatActivity {
     private EditText inputMessage;
     private ImageButton sendButton;
     private ChatAdapter chatAdapter;
-    private List<Message> messageList = new ArrayList<>();
+    private List<MessageModel> messageList = new ArrayList<>();
     private String username;
 
     @Override
@@ -40,7 +40,7 @@ public class ChatActivity extends AppCompatActivity {
             if (!msgText.isEmpty()) {
                 ChatService.sendMessage(username, msgText, success -> {
                     if (success) {
-                        messageList.add(new Message(username, msgText, System.currentTimeMillis()));
+                        messageList.add(new MessageModel(username, msgText, System.currentTimeMillis()));
                         chatAdapter.notifyDataSetChanged();
                         inputMessage.setText("");
                     }

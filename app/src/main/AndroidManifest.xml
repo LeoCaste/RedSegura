@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.redsegura.redseguraapp"
+    package="com.redsegura"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Permisos requeridos -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <application
+        android:name=".RedSeguraApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -18,34 +18,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RedSegura"
-        tools:targetApi="31">
+        tools:targetApi="33">
 
+        <!-- Activities con rutas completas -->
+        <activity android:name="com.redsegura.activities.AlertActivity" />
+        <activity android:name="com.redsegura.activities.MapActivity" />
+        <activity android:name="com.redsegura.activities.AIChatActivity" />
+        <activity android:name="com.redsegura.activities.ChatActivity" />
+        <activity android:name="com.redsegura.activities.CommunityActivity" />
+        <activity android:name="com.redsegura.activities.RegisterActivity" />
+        <activity android:name="com.redsegura.activities.LoginActivity" />
         <activity
-            android:name=".ui.AlertMapActivity"
-            android:label="Mapa de Alertas" />
-
-        <activity android:name=".activities.MapActivity" />
-        <activity android:name=".activities.AIChatActivity" />
-
-
-        <activity
-            android:name=".ui.HomeActivity"
-            android:label="Inicio" />
-
-        <activity
-            android:name=".ui.LoginActivity"
-            android:label="Iniciar Sesión" />
-
-        <activity
-            android:name=".MainActivity"
+            android:name="com.redsegura.activities.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.RedSegura">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
     </application>
+
 </manifest>

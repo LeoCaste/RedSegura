@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
-
 import androidx.core.app.ActivityCompat;
 
 public class LocationService {

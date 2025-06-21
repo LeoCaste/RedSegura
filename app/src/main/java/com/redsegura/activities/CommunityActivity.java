@@ -16,7 +16,7 @@ public class CommunityActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_community);
 
-        communityListView = findViewById(R.id.communityListView);
+        communityListView = findViewById(R.id.listViewCommunities); // ✅
 
         // Ejemplo de comunidades locales (esto puede venir del backend)
         String[] communities = {"Barrio Norte", "Villa Esperanza", "Temuco Centro", "Labranza Sur"};

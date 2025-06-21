@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import androidx.appcompat.app.AppCompatActivity;
-import com.redsegura.redseguraapp.R;
+import com.redsegura.R;
 
 public class MapActivity extends AppCompatActivity {
     private WebView webView;

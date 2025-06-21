@@ -13,10 +13,10 @@
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/editTextUsername"
-        android:hint="Nombre de usuario"
+        android:id="@+id/editTextRegisterName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:hint="Nombre de usuario" />
 
     <Button
         android:id="@+id/buttonRegister"

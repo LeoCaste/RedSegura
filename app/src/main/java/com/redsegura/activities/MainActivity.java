@@ -2,10 +2,9 @@ package com.redsegura.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.redsegura.redseguraapp.R;
+import com.redsegura.R; // Asegúrate que este sea correcto
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,13 +22,13 @@ public class MainActivity extends AppCompatActivity {
 
         fabMain.setOnClickListener(view -> toggleFabs());
 
-        fabMap.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, MapActivity.class));
-        });
+        fabMap.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, MapActivity.class))
+        );
 
-        fabIA.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, AIChatActivity.class));
-        });
+        fabIA.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, AIChatActivity.class))
+        );
     }
 
     private void toggleFabs() {

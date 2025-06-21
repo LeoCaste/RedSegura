@@ -5,15 +5,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.redsegura.models.Message;
-import com.redsegura.redseguraapp.R;
+import com.redsegura.models.MessageModel;
+import com.redsegura.R;
 import java.util.List;
 
 public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.ViewHolder> {
 
-    private List<Message> messageList;
+    private List<MessageModel> messageList;
 
-    public CommunityAdapter(List<Message> messages) {
+    public CommunityAdapter(List<MessageModel> messages) {
         this.messageList = messages;
     }
 
@@ -35,7 +35,7 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Message m = messageList.get(position);
+        MessageModel m = messageList.get(position);
         holder.user.setText(m.getSender());
         holder.message.setText(m.getContent());
     }
