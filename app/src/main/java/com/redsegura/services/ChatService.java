@@ -6,23 +6,17 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.OutputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
 import java.util.function.Consumer;
 
 public class ChatService {
 
-    private static final String BASE_URL = "http://52.206.230.134:8081"; // <-- Reemplaza esto
+    private static final String BASE_URL = "http://52.206.230.134:8081";
 
-    // Enviar mensaje al backend
-    public static void sendMessage(String sender, String message, Consumer<Boolean> callback) {
+    // Enviar mensaje
+    public static void sendMessage(String sender, String to, String message, Consumer<Boolean> callback) {
         AsyncTask.execute(() -> {
             try {
                 URL url = new URL(BASE_URL + "/messages/send");
@@ -33,9 +27,10 @@ public class ChatService {
 
                 JSONObject json = new JSONObject();
                 json.put("sender", sender);
-                json.put("receiver", "destinatario"); // puedes hacer dinámico esto luego
+                json.put("to", to);
                 json.put("message", message);
                 json.put("timestamp", System.currentTimeMillis());
+                json.put("fromAI", false);
 
                 try (OutputStream os = conn.getOutputStream();
                      BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"))) {
@@ -44,7 +39,7 @@ public class ChatService {
                 }
 
                 int responseCode = conn.getResponseCode();
-                callback.accept(responseCode == 200);
+                callback.accept(responseCode == 201); // 201 = created
 
             } catch (Exception e) {
                 Log.e("ChatService", "Error enviando mensaje", e);
@@ -53,7 +48,7 @@ public class ChatService {
         });
     }
 
-    // Obtener mensajes desde el backend
+    // Recibir mensajes
     public static void getMessages(String username, Consumer<JSONArray> callback) {
         AsyncTask.execute(() -> {
             try {
@@ -70,8 +65,9 @@ public class ChatService {
                     result.append(line);
                 }
 
-                JSONArray jsonArray = new JSONArray(result.toString());
-                callback.accept(jsonArray);
+                JSONObject response = new JSONObject(result.toString());
+                JSONArray messages = response.getJSONArray("messages");
+                callback.accept(messages);
 
             } catch (Exception e) {
                 Log.e("ChatService", "Error obteniendo mensajes", e);
