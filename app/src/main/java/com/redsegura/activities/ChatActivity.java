@@ -12,7 +12,10 @@ import com.redsegura.R;
 import com.redsegura.adapters.ChatAdapter;
 import com.redsegura.models.MessageModel;
 import com.redsegura.services.ChatService;
+import com.redsegura.services.NotificationService;
+import com.redsegura.utils.SessionManager;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -39,15 +42,15 @@ public class ChatActivity extends AppCompatActivity {
         chatAdapter = new ChatAdapter(this, messageList);
         chatListView.setAdapter(chatAdapter);
 
-        username = getIntent().getStringExtra("username");
+        username = SessionManager.getUsername(this);
 
         sendButton.setOnClickListener(v -> {
             String msgText = inputMessage.getText().toString().trim();
             if (!msgText.isEmpty()) {
-                ChatService.sendMessage(username, msgText, success -> {
+                ChatService.sendMessage(username, "admin", msgText, success -> {
                     if (success) {
                         runOnUiThread(() -> {
-                            messageList.add(new MessageModel(username, msgText, System.currentTimeMillis(), false));
+                            messageList.add(new MessageModel(username, "admin", msgText, System.currentTimeMillis(), false));
                             chatAdapter.notifyDataSetChanged();
                             inputMessage.setText("");
                         });
@@ -72,9 +75,16 @@ public class ChatActivity extends AppCompatActivity {
                                         JSONObject msg = response.getJSONObject(i);
                                         String sender = msg.getString("sender");
                                         String content = msg.getString("message");
-                                        long timestamp = System.currentTimeMillis(); // Ajusta si el backend devuelve timestamp real
+                                        long timestamp = msg.optLong("timestamp", System.currentTimeMillis());
                                         boolean fromAI = msg.optBoolean("fromAI", false);
-                                        messageList.add(new MessageModel(sender, content, timestamp, fromAI));
+
+                                        messageList.add(new MessageModel(sender, username, content, timestamp, fromAI));
+
+                                        if (fromAI) {
+                                            new NotificationService(getApplicationContext())
+                                                    .sendNotification("Mensaje de IA", content);
+                                        }
+
                                     } catch (Exception e) {
                                         Log.e("ChatPolling", "Error al parsear mensaje", e);
                                     }

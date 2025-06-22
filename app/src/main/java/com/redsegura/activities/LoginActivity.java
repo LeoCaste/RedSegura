@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.redsegura.R;
 import com.redsegura.utils.SessionManager;
 
@@ -17,8 +19,16 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
+        // Si ya hay un usuario guardado, saltar login
+        String savedUsername = SessionManager.getUsername(this);
+        if (savedUsername != null) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+            return;
+        }
+
+        setContentView(R.layout.activity_login);
         usernameInput = findViewById(R.id.editTextUsername);
         loginBtn = findViewById(R.id.buttonLogin);
 

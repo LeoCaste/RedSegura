@@ -1,6 +1,6 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android") // si en algún momento usas Kotlin
+    id("org.jetbrains.kotlin.android") // En caso de usar Kotlin
 }
 
 android {
@@ -27,9 +27,14 @@ android {
         }
     }
 
+    // Soporte completo para lambdas y características modernas
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
     }
 }
 

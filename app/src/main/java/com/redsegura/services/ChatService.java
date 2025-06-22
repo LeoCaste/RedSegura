@@ -3,20 +3,21 @@ package com.redsegura.services;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.redsegura.utils.Callback;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.function.Consumer;
 
 public class ChatService {
 
     private static final String BASE_URL = "http://52.206.230.134:8081";
 
     // Enviar mensaje
-    public static void sendMessage(String sender, String to, String message, Consumer<Boolean> callback) {
+    public static void sendMessage(String sender, String to, String message, Callback callback) {
         AsyncTask.execute(() -> {
             try {
                 URL url = new URL(BASE_URL + "/messages/send");
@@ -39,17 +40,17 @@ public class ChatService {
                 }
 
                 int responseCode = conn.getResponseCode();
-                callback.accept(responseCode == 201); // 201 = created
+                callback.onResponse(responseCode == 201); // 201 = creado
 
             } catch (Exception e) {
                 Log.e("ChatService", "Error enviando mensaje", e);
-                callback.accept(false);
+                callback.onResponse(false);
             }
         });
     }
 
-    // Recibir mensajes
-    public static void getMessages(String username, Consumer<JSONArray> callback) {
+    // Obtener mensajes
+    public static void getMessages(String username, ChatMessagesCallback callback) {
         AsyncTask.execute(() -> {
             try {
                 URL url = new URL(BASE_URL + "/messages/get/" + username);
@@ -67,12 +68,17 @@ public class ChatService {
 
                 JSONObject response = new JSONObject(result.toString());
                 JSONArray messages = response.getJSONArray("messages");
-                callback.accept(messages);
+                callback.onMessagesReceived(messages);
 
             } catch (Exception e) {
                 Log.e("ChatService", "Error obteniendo mensajes", e);
-                callback.accept(null);
+                callback.onMessagesReceived(null);
             }
         });
+    }
+
+    // Interfaz personalizada para recibir mensajes
+    public interface ChatMessagesCallback {
+        void onMessagesReceived(JSONArray messages);
     }
 }
