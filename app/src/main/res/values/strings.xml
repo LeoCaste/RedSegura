@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RedSegura</string>
+    <string name="friend_requests_title">Solicitudes de amistad</string>
+    <string name="tutorial_welcome_text">Bienvenido a RedSegura\n\nCon esta app puedes:\n✓ Enviar alertas geolocalizadas\n✓ Conectarte con vecinos\n✓ Ver actividad en tiempo real</string>
+    <string name="btn_continue">Continuar</string>
+    <string name="sample_username">usuario123</string>
+    <string name="btn_accept">Aceptar</string>
 </resources>

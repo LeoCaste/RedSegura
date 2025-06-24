@@ -3,10 +3,10 @@
     package="com.redsegura"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:name=".RedSeguraApp"
@@ -20,7 +20,7 @@
         android:theme="@style/Theme.RedSegura"
         tools:targetApi="33">
 
-        <!-- Activities con rutas completas -->
+        <!-- Actividades de tu app -->
         <activity android:name="com.redsegura.activities.AlertActivity" />
         <activity android:name="com.redsegura.activities.MapActivity" />
         <activity android:name="com.redsegura.activities.AIChatActivity" />
@@ -28,16 +28,19 @@
         <activity android:name="com.redsegura.activities.CommunityActivity" />
         <activity android:name="com.redsegura.activities.RegisterActivity" />
         <activity android:name="com.redsegura.activities.LoginActivity" />
+        <activity android:name="com.redsegura.activities.TutorialActivity" />
+        <activity android:name="com.redsegura.activities.MainActivity" />
+
+        <!-- NUEVA: LauncherActivity como inicio -->
         <activity
-            android:name="com.redsegura.activities.MainActivity"
+            android:name="com.redsegura.activities.LauncherActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.RedSegura">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-    </application>
 
+    </application>
 </manifest>
